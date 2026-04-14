@@ -26,10 +26,36 @@ offset_bottom = 418.0
 
 [node name="problem" type="RichTextLabel" parent="bg/board"]
 layout_mode = 0
-offset_right = 759.0
-offset_bottom = 371.0
+offset_left = 7.0
+offset_top = 57.0
+offset_right = 752.0
+offset_bottom = 178.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 text = "twinkie pie"
 
+[node name="answer" type="TextEdit" parent="bg/board"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 264.0
+offset_right = 736.0
+offset_bottom = 314.0
+theme_override_colors/search_result_color = Color(0.2592937, 0.2592937, 0.25929365, 1)
+
+[node name="submit" type="Button" parent="bg/board"]
+layout_mode = 0
+offset_left = 283.0
+offset_top = 325.0
+offset_right = 505.0
+offset_bottom = 356.0
+text = "Check answer"
+
+[node name="feedback" type="RichTextLabel" parent="bg/board"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+
 [node name="manager" type="Node2D" parent="."]
 script = ExtResource("1_wtcfe")
+
+[connection signal="pressed" from="bg/board/submit" to="manager" method="_on_answer_submit"]
