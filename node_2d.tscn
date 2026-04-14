@@ -51,7 +51,7 @@ text = "Check answer"
 
 [node name="feedback" type="RichTextLabel" parent="bg/board"]
 layout_mode = 0
-offset_right = 40.0
+offset_right = 708.0
 offset_bottom = 40.0
 theme_override_colors/default_color = Color(1, 0, 0, 1)
 

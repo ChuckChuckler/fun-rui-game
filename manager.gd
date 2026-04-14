@@ -24,10 +24,10 @@ func _process(delta: float) -> void:
 
 func createProblem():
 	#var choice = rng.randi_range(1,2)
-	var choice=1
+	var choice=2
 	if choice==1: #spring related questions
-		var type=rng.randi_range(1,6)
-		#var type=6
+		#var type=rng.randi_range(1,6)
+		var type=7
 		var numCycles=randi_range(5,30)
 		var numSeconds=randi_range(10,25)
 		var t=(numSeconds*1.0)/numCycles
@@ -56,7 +56,7 @@ func createProblem():
 			var k=m*pow((2*PI)/t,2)
 			var x=roundToDec(randf_range(0.1,0.6), 2)
 			ans=(0.5)*k*pow(x, 2)
-			problemDisplay.text=str("A spring dangles a mass of ", m, "kg, and the spring fully oscillates ", numCycles, " times in ", numSeconds, " seconds. The spring stretches a maximum of ", x, " m. What is the energy of the system?")
+			problemDisplay.text=str("A spring dangles a mass of ", m, "kg, and the spring fully oscillates ", numCycles, " times in ", numSeconds, " seconds. When the spring is compressed ", x, " m, what is the energy of the system?")
 		elif type==5: #solve for F
 			var m=roundToDec(randf_range(0.1,2), 2)
 			var k=m*pow((2*PI)/t,2)
@@ -70,24 +70,78 @@ func createProblem():
 			var PE=(0.5)*k*pow(x, 2)
 			ans=PE/(m*g)
 			problemDisplay.text=str("A spring with constant ", roundToDec(k,2), " N/m is compressed ", x, "m. It is released to propel a ", m, "kg object upwards. How high will the object go, ignoring air resistance?")
-
+		elif type==7: #solve for v
+			var m=roundToDec(randf_range(0.1,2), 2)
+			var k=m*pow((2*PI)/t,2)
+			var x=roundToDec(randf_range(0.1,0.6), 2)
+			var PE=(0.5)*k*pow(x, 2)
+			ans=sqrt((2*PE)/m)
+			var format=randi_range(1,2)
+			if format==1:
+				problemDisplay.text=str("A ", m, " kg mass is attached to a spring with a spring constant of ", roundToDec(k,2), " N/m. If the spring is stretched ", x, " m and then released, what will be the maximum speed of the mass?")
+			else:
+				problemDisplay.text=str("A spring with constant ", roundToDec(k,2), " N/m is compressed a distance of ", x, " m by a ", m, " kg object. When the object is released, how fast will the block move forward?")
+	
 	elif choice==2: #pendulum related questions
-		#var type=rng.randi_range(1,2)
-		var type=1
-		if type==1: #finding length of pendulum?
+		var type=rng.randi_range(1,6)
+		#var type=1
+		if type==1: #solve for length of pendulum
 			var numCycles=randi_range(5,30)
 			var numSeconds=randi_range(10,25)
 			var t=(numCycles*1.0)/numSeconds
 			ans=g*pow(t/(2*PI),2)
 			problemDisplay.text=str("A pendulum completes ", numCycles, " oscillations in ", numSeconds, " seconds. What is the length of the pendulum?")
-		
+		elif type==2: #solve for g i guess???
+			var numCycles=randi_range(5,30)
+			var numSeconds=randi_range(10,25)
+			var t=(numCycles*1.0)/numSeconds
+			var l=roundToDec(randf_range(0.1,1),2)
+			ans=l*pow((2*PI)/t,2)
+			problemDisplay.text=str("On another planet, a ", l, " m long pendulum completes ", numCycles, " oscillations in ", numSeconds, " seconds. What is the gravitational force on this planet?")
+		elif type==3: #solve for T
+			var l=roundToDec(randf_range(0.1,1),2)
+			ans=2*PI*sqrt(l/g)
+			problemDisplay.text=str("A pendulum is ", l, " m long. Calculate its period.")
+		elif type==4: #solve for F
+			var l=roundToDec(randf_range(0.1,1),2)
+			ans=1/(2*PI*sqrt(l/g))
+			problemDisplay.text=str("A pendulum is ", l, " m long. Calculate its frequency.")
+		elif type==5: #solve for s
+			var l=roundToDec(randf_range(0.1,1),2)
+			var T=2*PI*sqrt(l/g)
+			var numCycles=randi_range(5,30)
+			ans=numCycles/T
+			problemDisplay.text=str("A ", l, " m long pendulum makes ", numCycles, " cycles in how many seconds?")
+		elif type==6: #solve for cycles
+			var l=roundToDec(randf_range(0.1,1),2)
+			var T=2*PI*sqrt(l/g)
+			var numSeconds=randi_range(10,25)
+			ans=T*numSeconds
+			problemDisplay.text=str("In ", numSeconds, " seconds, how many cycles does a ", l, " m long pendulum make?")
+		print_debug(ans)
+			
 func roundToDec(x, digit):
 	return round(x*pow(10.0,digit))/pow(10.0,digit)
 
 func _on_answer_submit() -> void:
 	if answer.text!="":
-		answer=float(answer)
-		if answer>=ans-0.1 && answer<=ans+0.1:
+		var userFloat = float(answer.text)
+		if userFloat>=ans-0.1 && userFloat<=ans+0.1:
+			feedback.pop_all()
+			feedback.push_color(Color(0.0, 0.677, 0.0, 1.0))
 			feedback.text="Correct!"
+			var timer = Timer.new()
+			add_child(timer)
+			timer.wait_time=3
+			timer.one_shot=true
+			timer.timeout.connect(nextProblem)
+			timer.start()
+			
 		else:
+			feedback.pop_all()
+			feedback.push_color(Color(1,0,0))
 			feedback.text="Try again..."
+
+func nextProblem():
+	createProblem()
+	feedback.text=""
