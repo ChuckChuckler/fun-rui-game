@@ -6,8 +6,12 @@ const g=9.8
 @onready var problemDisplay = $"../bg/board/problem"
 @onready var answer = $"../bg/board/answer"
 @onready var feedback = $"../bg/board/feedback"
+@onready var kasaHead = $"../bg/incorrectAnswers/kasaHead"
 
 var ans=0
+var firstTimeWrong=true
+var incorrectAnswers=0
+const totalIncorrects=10
 
 var rng = RandomNumberGenerator.new();
 
@@ -23,11 +27,11 @@ func _process(delta: float) -> void:
 
 
 func createProblem():
-	#var choice = rng.randi_range(1,2)
-	var choice=2
+	var choice = rng.randi_range(1,2)
+	choice=2
 	if choice==1: #spring related questions
-		#var type=rng.randi_range(1,6)
-		var type=7
+		var type=rng.randi_range(1,6)
+		#var type=7
 		var numCycles=randi_range(5,30)
 		var numSeconds=randi_range(10,25)
 		var t=(numSeconds*1.0)/numCycles
@@ -84,17 +88,17 @@ func createProblem():
 	
 	elif choice==2: #pendulum related questions
 		var type=rng.randi_range(1,6)
-		#var type=1
+		type=5
 		if type==1: #solve for length of pendulum
 			var numCycles=randi_range(5,30)
 			var numSeconds=randi_range(10,25)
-			var t=(numCycles*1.0)/numSeconds
+			var t=(numSeconds*1.0)/numCycles
 			ans=g*pow(t/(2*PI),2)
 			problemDisplay.text=str("A pendulum completes ", numCycles, " oscillations in ", numSeconds, " seconds. What is the length of the pendulum?")
 		elif type==2: #solve for g i guess???
 			var numCycles=randi_range(5,30)
 			var numSeconds=randi_range(10,25)
-			var t=(numCycles*1.0)/numSeconds
+			var t=(numSeconds*1.0)/numCycles
 			var l=roundToDec(randf_range(0.1,1),2)
 			ans=l*pow((2*PI)/t,2)
 			problemDisplay.text=str("On another planet, a ", l, " m long pendulum completes ", numCycles, " oscillations in ", numSeconds, " seconds. What is the gravitational force on this planet?")
@@ -110,15 +114,15 @@ func createProblem():
 			var l=roundToDec(randf_range(0.1,1),2)
 			var T=2*PI*sqrt(l/g)
 			var numCycles=randi_range(5,30)
-			ans=numCycles/T
+			ans=numCycles*T
 			problemDisplay.text=str("A ", l, " m long pendulum makes ", numCycles, " cycles in how many seconds?")
 		elif type==6: #solve for cycles
 			var l=roundToDec(randf_range(0.1,1),2)
 			var T=2*PI*sqrt(l/g)
 			var numSeconds=randi_range(10,25)
-			ans=T*numSeconds
+			ans=numSeconds/T
 			problemDisplay.text=str("In ", numSeconds, " seconds, how many cycles does a ", l, " m long pendulum make?")
-		print_debug(ans)
+		
 			
 func roundToDec(x, digit):
 	return round(x*pow(10.0,digit))/pow(10.0,digit)
@@ -127,9 +131,11 @@ func _on_answer_submit() -> void:
 	if answer.text!="":
 		var userFloat = float(answer.text)
 		if userFloat>=ans-0.1 && userFloat<=ans+0.1:
-			feedback.pop_all()
+			feedback.text=""
 			feedback.push_color(Color(0.0, 0.677, 0.0, 1.0))
-			feedback.text="Correct!"
+			feedback.add_text("Correct!")
+			$"../hooray".play()
+			confetti()
 			var timer = Timer.new()
 			add_child(timer)
 			timer.wait_time=3
@@ -138,10 +144,33 @@ func _on_answer_submit() -> void:
 			timer.start()
 			
 		else:
-			feedback.pop_all()
+			feedback.text=""
 			feedback.push_color(Color(1,0,0))
-			feedback.text="Try again..."
+			feedback.add_text("Try again...")
+			if firstTimeWrong:
+				incorrectAnswers+=1
+				kasaHead.set_position(Vector2(($"../bg/incorrectAnswers".size.x*((incorrectAnswers*1.0)/totalIncorrects)),kasaHead.position.y))
+				firstTimeWrong=false
+
+func confetti():
+	var confettiTextures = [
+		load("res://confetti/red.png"),
+		load("res://confetti/blue.png"),
+		load("res://confetti/yellow.png")
+	]
+	
+	for i in range(100):
+		var confettiPiece = Sprite2D.new()
+		confettiPiece.texture=confettiTextures[randi_range(0,confettiTextures.size()-1)]
+		confettiPiece.position=Vector2(randf_range(0, get_viewport().size.x),0)
+		confettiPiece.scale=Vector2(randf_range(0.02, 0.05),randf_range(0.02, 0.05))
+		$"../bg".add_child(confettiPiece)
+		var tween=create_tween()
+		var velocity = Vector2(randf_range(0,1156),randf_range(100,300))
+		tween.tween_property(confettiPiece, "position",velocity, 1)
+		tween.parallel().tween_property(confettiPiece,"modulate:a",0.0,1).set_delay(0.5)
 
 func nextProblem():
 	createProblem()
 	feedback.text=""
+	answer.text=""

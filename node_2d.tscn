@@ -1,6 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxo5gqgrynf0i"]
+[gd_scene load_steps=5 format=3 uid="uid://bxo5gqgrynf0i"]
 
 [ext_resource type="Script" uid="uid://cdw65laxsr1yh" path="res://manager.gd" id="1_wtcfe"]
+[ext_resource type="AudioStream" uid="uid://cjk0rdyv6g16w" path="res://sfx/fnaf-hooray.mp3" id="2_0e48y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wtcfe"]
+bg_color = Color(1, 0.5574698, 0.5480354, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0e48y"]
+bg_color = Color(0.56004095, 0.8000301, 0.57332885, 1)
 
 [node name="Node2D" type="Node2D"]
 
@@ -53,9 +64,70 @@ text = "Check answer"
 layout_mode = 0
 offset_right = 708.0
 offset_bottom = 40.0
-theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_colors/default_color = Color(0.53334785, 0.53474045, 0.53854525, 1)
+
+[node name="tsukasa" type="ColorRect" parent="bg"]
+layout_mode = 0
+offset_left = 951.0
+offset_top = 453.0
+offset_right = 1141.0
+offset_bottom = 647.0
+color = Color(0.95775014, 0.9155739, 0.7407859, 1)
+
+[node name="incorrectAnswers" type="Panel" parent="bg"]
+layout_mode = 0
+offset_left = 393.0
+offset_top = 484.0
+offset_right = 897.0
+offset_bottom = 505.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_wtcfe")
+
+[node name="kasaHead" type="ColorRect" parent="bg/incorrectAnswers"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -11.0
+offset_right = 43.0
+offset_bottom = 29.0
+color = Color(0.95686275, 0.9137255, 0.7411765, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="bg/incorrectAnswers"]
+layout_mode = 0
+offset_left = -14.0
+offset_top = -44.0
+offset_right = 315.0
+offset_bottom = -12.0
+theme_override_colors/default_color = Color(1, 0.33880258, 0.3407157, 1)
+text = "Cannon meter (incorrect answers)"
+
+[node name="incorrectAnswers2" type="Panel" parent="bg"]
+layout_mode = 0
+offset_left = 396.0
+offset_top = 584.0
+offset_right = 900.0
+offset_bottom = 605.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_0e48y")
+
+[node name="kasaHead" type="ColorRect" parent="bg/incorrectAnswers2"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = -11.0
+offset_right = 44.0
+offset_bottom = 29.0
+color = Color(0.95686275, 0.9137255, 0.7411765, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="bg/incorrectAnswers2"]
+layout_mode = 0
+offset_left = -14.0
+offset_top = -44.0
+offset_right = 315.0
+offset_bottom = -12.0
+theme_override_colors/default_color = Color(0.37786353, 0.48460186, 0.12727585, 1)
+text = "Yippee meter (correct answers)"
 
 [node name="manager" type="Node2D" parent="."]
 script = ExtResource("1_wtcfe")
+
+[node name="hooray" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_0e48y")
 
 [connection signal="pressed" from="bg/board/submit" to="manager" method="_on_answer_submit"]
