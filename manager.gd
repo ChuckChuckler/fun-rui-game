@@ -6,12 +6,19 @@ const g=9.8
 @onready var problemDisplay = $"../bg/board/problem"
 @onready var answer = $"../bg/board/answer"
 @onready var feedback = $"../bg/board/feedback"
-@onready var kasaHead = $"../bg/incorrectAnswers/kasaHead"
+@onready var kasaHeadIncorrect = $"../bg/incorrectAnswers/kasaHead"
+@onready var kasaHeadCorrect = $"../bg/correctAnswers/kasaHead"
 
 var ans=0
 var firstTimeWrong=true
+
 var incorrectAnswers=0
 const totalIncorrects=10
+
+var correctAnswers=0
+const totalCorrects=10
+
+var buttonCooldown=false
 
 var rng = RandomNumberGenerator.new();
 
@@ -128,29 +135,40 @@ func roundToDec(x, digit):
 	return round(x*pow(10.0,digit))/pow(10.0,digit)
 
 func _on_answer_submit() -> void:
-	if answer.text!="":
-		var userFloat = float(answer.text)
-		if userFloat>=ans-0.1 && userFloat<=ans+0.1:
-			feedback.text=""
-			feedback.push_color(Color(0.0, 0.677, 0.0, 1.0))
-			feedback.add_text("Correct!")
-			$"../hooray".play()
-			confetti()
-			var timer = Timer.new()
-			add_child(timer)
-			timer.wait_time=3
-			timer.one_shot=true
-			timer.timeout.connect(nextProblem)
-			timer.start()
-			
-		else:
-			feedback.text=""
-			feedback.push_color(Color(1,0,0))
-			feedback.add_text("Try again...")
-			if firstTimeWrong:
-				incorrectAnswers+=1
-				kasaHead.set_position(Vector2(($"../bg/incorrectAnswers".size.x*((incorrectAnswers*1.0)/totalIncorrects)),kasaHead.position.y))
-				firstTimeWrong=false
+	if !buttonCooldown:
+		if answer.text!="":
+			var userFloat = float(answer.text)
+			if userFloat>=ans-0.1 && userFloat<=ans+0.1:
+				feedback.text=""
+				correctAnswers+=1
+				kasaHeadCorrect.set_position(Vector2(($"../bg/correctAnswers".size.x*((correctAnswers*1.0)/totalCorrects)),kasaHeadCorrect.position.y))
+				feedback.push_color(Color(0.0, 0.677, 0.0, 1.0))
+				feedback.add_text("Correct!")
+				$"../hooray".play()
+				confetti()
+				buttonCooldown=true
+				var timer = Timer.new()
+				add_child(timer)
+				timer.wait_time=3
+				timer.one_shot=true
+				timer.timeout.connect(nextProblem)
+				timer.start()
+				
+			else:
+				if firstTimeWrong:
+					incorrectAnswers+=1
+					kasaHeadIncorrect.set_position(Vector2(($"../bg/incorrectAnswers".size.x*((incorrectAnswers*1.0)/totalIncorrects)),kasaHeadIncorrect.position.y))
+					#firstTimeWrong=false
+				
+				if incorrectAnswers==totalIncorrects:
+					$"../bg".visible=false
+					$"../gameLose".visible=true
+				else:
+					feedback.text=""
+					feedback.push_color(Color(1,0,0))
+					feedback.add_text("Try again...")
+					$"../bungebob".play()
+					$"../awww".play()
 
 func confetti():
 	var confettiTextures = [
@@ -171,6 +189,11 @@ func confetti():
 		tween.parallel().tween_property(confettiPiece,"modulate:a",0.0,1).set_delay(0.5)
 
 func nextProblem():
-	createProblem()
-	feedback.text=""
-	answer.text=""
+	if correctAnswers==totalCorrects:
+		$"../bg".visible=false
+		$"../gameWin".visible=true
+	else:
+		createProblem()
+		feedback.text=""
+		answer.text=""
+		buttonCooldown=false

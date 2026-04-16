@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bxo5gqgrynf0i"]
+[gd_scene load_steps=7 format=3 uid="uid://bxo5gqgrynf0i"]
 
 [ext_resource type="Script" uid="uid://cdw65laxsr1yh" path="res://manager.gd" id="1_wtcfe"]
 [ext_resource type="AudioStream" uid="uid://cjk0rdyv6g16w" path="res://sfx/fnaf-hooray.mp3" id="2_0e48y"]
+[ext_resource type="AudioStream" uid="uid://b4yi8r1w7rlnl" path="res://sfx/spongebob-fail.mp3" id="3_0hol4"]
+[ext_resource type="AudioStream" uid="uid://b5x3knsvcd5bm" path="res://sfx/crowd-disappointed_8DRsYem.mp3" id="4_0hol4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wtcfe"]
 bg_color = Color(1, 0.5574698, 0.5480354, 1)
@@ -99,7 +101,7 @@ offset_bottom = -12.0
 theme_override_colors/default_color = Color(1, 0.33880258, 0.3407157, 1)
 text = "Cannon meter (incorrect answers)"
 
-[node name="incorrectAnswers2" type="Panel" parent="bg"]
+[node name="correctAnswers" type="Panel" parent="bg"]
 layout_mode = 0
 offset_left = 396.0
 offset_top = 584.0
@@ -107,7 +109,7 @@ offset_right = 900.0
 offset_bottom = 605.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_0e48y")
 
-[node name="kasaHead" type="ColorRect" parent="bg/incorrectAnswers2"]
+[node name="kasaHead" type="ColorRect" parent="bg/correctAnswers"]
 layout_mode = 0
 offset_left = 4.0
 offset_top = -11.0
@@ -115,7 +117,7 @@ offset_right = 44.0
 offset_bottom = 29.0
 color = Color(0.95686275, 0.9137255, 0.7411765, 1)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="bg/incorrectAnswers2"]
+[node name="RichTextLabel" type="RichTextLabel" parent="bg/correctAnswers"]
 layout_mode = 0
 offset_left = -14.0
 offset_top = -44.0
@@ -129,5 +131,39 @@ script = ExtResource("1_wtcfe")
 
 [node name="hooray" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_0e48y")
+
+[node name="bungebob" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_0hol4")
+
+[node name="awww" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_0hol4")
+
+[node name="gameLose" type="ColorRect" parent="."]
+visible = false
+offset_right = 1157.0
+offset_bottom = 646.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="gameLose"]
+layout_mode = 0
+offset_right = 1114.0
+offset_bottom = 612.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Insert Tsukasa getting shot of out cannon"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="gameWin" type="ColorRect" parent="."]
+visible = false
+offset_right = 1154.0
+offset_bottom = 651.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="gameWin"]
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 642.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "wow you won yayyyyyyyyyy"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="bg/board/submit" to="manager" method="_on_answer_submit"]
