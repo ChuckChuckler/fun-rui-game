@@ -1,0 +1,117 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2lt7s0wgdqup"]
+
+[ext_resource type="Script" uid="uid://cggh10gakn7nt" path="res://openingManager.gd" id="1_u6t4w"]
+[ext_resource type="Script" uid="uid://dn4ug1a8dqc34" path="res://vnManager.gd" id="2_dhfb4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u6t4w"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dhfb4"]
+bg_color = Color(0.7530499, 0.8397142, 0.8706075, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+expand_margin_left = 8.0
+expand_margin_top = 5.0
+expand_margin_right = 8.0
+
+[node name="vn" type="Node2D"]
+
+[node name="opening" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_u6t4w")
+
+[node name="bg" type="ColorRect" parent="opening"]
+layout_mode = 0
+offset_right = 1148.0
+offset_bottom = 647.0
+color = Color(0.056291588, 0.056291603, 0.056291595, 1)
+
+[node name="text" type="RichTextLabel" parent="opening"]
+layout_mode = 0
+offset_left = 71.0
+offset_top = -15.0
+offset_right = 1064.0
+offset_bottom = 533.0
+theme_override_font_sizes/normal_font_size = 40
+text = "My name is Tenma Tsukasa."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="opening"]
+layout_mode = 0
+offset_left = 447.0
+offset_top = 411.0
+offset_right = 712.0
+offset_bottom = 467.0
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_u6t4w")
+text = "next >>"
+
+[node name="vn" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_dhfb4")
+
+[node name="bg" type="ColorRect" parent="vn"]
+layout_mode = 0
+offset_right = 1155.0
+offset_bottom = 647.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="vn/bg"]
+layout_mode = 0
+offset_right = 1161.0
+offset_bottom = 639.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 20
+text = "draw this dummy failing his test clean 0/100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="startTimer" type="Timer" parent="vn"]
+wait_time = 3.0
+one_shot = true
+
+[node name="tsukaka" type="ColorRect" parent="vn"]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 81.0
+offset_right = 270.0
+offset_bottom = 647.0
+color = Color(0.9465473, 0.8766686, 0.5756171, 1)
+
+[node name="text" type="Control" parent="vn"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="textDisplay" type="ColorRect" parent="vn/text"]
+layout_mode = 0
+offset_top = 529.0
+offset_right = 1156.0
+offset_bottom = 646.0
+color = Color(0.9404691, 0.8624787, 0.8958164, 1)
+
+[node name="nameDisplay" type="Panel" parent="vn/text"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 486.0
+offset_right = 241.0
+offset_bottom = 530.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dhfb4")
+
+[node name="name" type="RichTextLabel" parent="vn/text/nameDisplay"]
+layout_mode = 0
+offset_right = 205.0
+offset_bottom = 40.0
+theme_override_colors/default_color = Color(0.32172796, 0.32172796, 0.32172796, 1)
+theme_override_font_sizes/normal_font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="opening/Button" to="opening" method="_on_next"]
