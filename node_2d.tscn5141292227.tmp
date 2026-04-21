@@ -1,11 +1,9 @@
-[gd_scene load_steps=36 format=3 uid="uid://bxo5gqgrynf0i"]
+[gd_scene load_steps=31 format=3 uid="uid://bxo5gqgrynf0i"]
 
-[ext_resource type="Texture2D" uid="uid://c58e5h0iqcnuv" path="res://tsukasaInCannon.png" id="1_0h7mo"]
 [ext_resource type="Texture2D" uid="uid://pmbey66fppbi" path="res://tsukasa mini head/neutral.png" id="1_ir8iy"]
 [ext_resource type="Script" uid="uid://cdw65laxsr1yh" path="res://manager.gd" id="1_wtcfe"]
 [ext_resource type="AudioStream" uid="uid://cjk0rdyv6g16w" path="res://sfx/fnaf-hooray.mp3" id="2_0e48y"]
 [ext_resource type="Script" uid="uid://b0g1l7a5kktgg" path="res://minihead.gd" id="2_hqns4"]
-[ext_resource type="Texture2D" uid="uid://dlr2l0hj23k12" path="res://mwah.png" id="2_nr8wp"]
 [ext_resource type="AudioStream" uid="uid://b4yi8r1w7rlnl" path="res://sfx/spongebob-fail.mp3" id="3_0hol4"]
 [ext_resource type="AudioStream" uid="uid://b5x3knsvcd5bm" path="res://sfx/crowd-disappointed_8DRsYem.mp3" id="4_0hol4"]
 [ext_resource type="Texture2D" uid="uid://crsvwr0yk6eho" path="res://Rui_spritesheet.png" id="5_kdubu"]
@@ -13,31 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://betjrikg8fvje" path="res://Spritesheet again.png" id="6_rj586"]
 [ext_resource type="Texture2D" uid="uid://cfuthrngnca70" path="res://tsukasas head/tsukasaNeutral.png" id="8_rj586"]
 [ext_resource type="Script" uid="uid://drtxi3km06o2f" path="res://tsukasa.gd" id="9_4d7sh"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x0ka3"]
-bg_color = Color(0.9565986, 0.93960077, 0.8778195, 1)
-corner_radius_top_left = 20
-corner_radius_top_right = 20
-corner_radius_bottom_right = 20
-corner_radius_bottom_left = 20
-expand_margin_left = 5.0
-expand_margin_top = 5.0
-expand_margin_right = 5.0
-expand_margin_bottom = 5.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0h7mo"]
-bg_color = Color(0.6848407, 0.61670214, 0.7279525, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d2bti"]
-bg_color = Color(0.35931107, 0.6249875, 0.67537993, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wtcfe"]
 bg_color = Color(1, 1, 1, 1)
@@ -1461,60 +1434,62 @@ _data = {
 offset_left = -3.0
 offset_top = -24.0
 offset_right = 1152.0
-offset_bottom = 644.0
-color = Color(0.7200812, 0.83105385, 0.78718925, 1)
+offset_bottom = 628.0
+color = Color(0.77066714, 0.8387558, 0.8355525, 1)
 
-[node name="board" type="Panel" parent="bg"]
+[node name="board" type="ColorRect" parent="bg"]
 layout_mode = 0
-offset_left = 354.0
+offset_left = 353.0
 offset_top = 48.0
-offset_right = 1109.0
-offset_bottom = 421.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_x0ka3")
+offset_right = 1110.0
+offset_bottom = 418.0
 
 [node name="problem" type="RichTextLabel" parent="bg/board"]
 layout_mode = 0
-offset_left = 6.0
+offset_left = 7.0
 offset_top = 57.0
-offset_right = 751.0
+offset_right = 752.0
 offset_bottom = 178.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 text = "twinkie pie"
 
 [node name="answer" type="TextEdit" parent="bg/board"]
 layout_mode = 0
-offset_left = 28.0
+offset_left = 29.0
 offset_top = 264.0
-offset_right = 735.0
+offset_right = 736.0
 offset_bottom = 314.0
-theme_override_colors/selection_color = Color(0.5, 0.5, 0.5, 1)
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/background_color = Color(0.070970885, 0, 0.019800264, 0)
-theme_override_styles/normal = SubResource("StyleBoxFlat_0h7mo")
+theme_override_colors/search_result_color = Color(0.2592937, 0.2592937, 0.25929365, 1)
 
 [node name="submit" type="Button" parent="bg/board"]
 layout_mode = 0
-offset_left = 282.0
+offset_left = 283.0
 offset_top = 325.0
-offset_right = 504.0
+offset_right = 505.0
 offset_bottom = 356.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_d2bti")
 text = "Check answer"
 
 [node name="feedback" type="RichTextLabel" parent="bg/board"]
 layout_mode = 0
-offset_left = -1.0
-offset_right = 707.0
+offset_right = 708.0
 offset_bottom = 40.0
 theme_override_colors/default_color = Color(0.53334785, 0.53474045, 0.53854525, 1)
 
+[node name="RichTextLabel" type="RichTextLabel" parent="bg"]
+layout_mode = 0
+offset_left = 610.0
+offset_top = 491.0
+offset_right = 691.0
+offset_bottom = 523.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Progress"
+
 [node name="progressBar" type="Panel" parent="bg"]
 layout_mode = 0
-offset_left = 370.0
-offset_top = 554.0
-offset_right = 874.0
-offset_bottom = 575.0
+offset_left = 395.0
+offset_top = 541.0
+offset_right = 899.0
+offset_bottom = 562.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_wtcfe")
 
 [node name="cannonSide" type="PanelContainer" parent="bg/progressBar"]
@@ -1542,16 +1517,6 @@ layout_mode = 2
 texture = SubResource("GradientTexture2D_ta5nu")
 expand_mode = 1
 
-[node name="TsukasaInCannon" type="Sprite2D" parent="bg/progressBar"]
-position = Vector2(7.999998, 5)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("1_0h7mo")
-
-[node name="Mwah" type="Sprite2D" parent="bg/progressBar"]
-position = Vector2(513, 0.9999845)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_nr8wp")
-
 [node name="miniHead" type="Sprite2D" parent="bg/progressBar"]
 position = Vector2(250, 7.000001)
 scale = Vector2(0.12, 0.12)
@@ -1563,24 +1528,6 @@ root_node = NodePath("../../../..")
 libraries = {
 &"": SubResource("AnimationLibrary_d2bti")
 }
-
-[node name="incorrectDisplay" type="RichTextLabel" parent="bg"]
-layout_mode = 0
-offset_left = 459.0
-offset_top = 481.0
-offset_right = 558.0
-offset_bottom = 521.0
-theme_override_colors/default_color = Color(1, 0.115859665, 0.14831698, 1)
-text = "Incorrect: 0"
-
-[node name="correctDisplay" type="RichTextLabel" parent="bg"]
-layout_mode = 0
-offset_left = 693.0
-offset_top = 481.0
-offset_right = 794.0
-offset_bottom = 521.0
-theme_override_colors/default_color = Color(0.12863967, 0.511303, 0, 1)
-text = "Correct: 0"
 
 [node name="manager" type="Node2D" parent="."]
 script = ExtResource("1_wtcfe")

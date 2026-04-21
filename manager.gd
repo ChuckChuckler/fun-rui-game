@@ -144,11 +144,14 @@ func _on_answer_submit() -> void:
 				feedback.text=""
 				if firstTimeWrong:
 					correctAnswers+=1
+					$"../bg/correctDisplay".text="Correct: " + str(correctAnswers)
 					miniHead.set_position(Vector2(miniHead.position.x+($"../bg/progressBar".size.x*(1.0/(totalCorrects+totalIncorrects))),miniHead.position.y))
 					if (correctAnswers*1.0)/totalCorrects >= 0.5:
 						$"../bg/progressBar/miniHead".almostThere()
 					else:
 						$"../bg/progressBar/miniHead".neutral()
+						makeRuiNormal()
+						
 				feedback.push_color(Color(0.0, 0.677, 0.0, 1.0))
 				feedback.add_text("Correct!")
 				$"../hooray".play()
@@ -162,12 +165,15 @@ func _on_answer_submit() -> void:
 			else:
 				if firstTimeWrong:
 					incorrectAnswers+=1
+					$"../bg/incorrectDisplay".text="Incorrect: " + str(incorrectAnswers)
 					miniHead.set_position(Vector2(miniHead.position.x-($"../bg/progressBar".size.x*(1.0/(totalCorrects+totalIncorrects))),miniHead.position.y))
 					#firstTimeWrong=false
 					if (incorrectAnswers*1.0)/totalIncorrects >= 0.5:
 						$"../bg/progressBar/miniHead".cannonImpending()
+						makeRuiPsychotic()
 					else:
 						$"../bg/progressBar/miniHead".neutral()
+						makeRuiNormal()
 				
 				if incorrectAnswers==totalIncorrects:
 					$"../bg".visible=false
@@ -207,3 +213,13 @@ func nextProblem():
 		feedback.text=""
 		answer.text=""
 		buttonCooldown=false
+		
+func makeRuiPsychotic():
+	var textureReplace = [$"../rui/underEyeL", $"../rui/pupilL", $"../rui/underEyeR", $"../rui/pupilR", $"../rui/mouf", $"../rui/eyelashL", $"../rui/eyelashR", $"../rui/eyebrowL", $"../rui/eyebrowR"]
+	for i in range(textureReplace.size()):
+		textureReplace[i].texture=load("res://ruiSpritePsychotic.png")
+		
+func makeRuiNormal():
+	var textureReplace = [$"../rui/underEyeL", $"../rui/pupilL", $"../rui/underEyeR", $"../rui/pupilR", $"../rui/mouf", $"../rui/eyelashL", $"../rui/eyelashR", $"../rui/eyebrowL", $"../rui/eyebrowR"]
+	for i in range(textureReplace.size()):
+		textureReplace[i].texture=load("res://Spritesheet again.png")
