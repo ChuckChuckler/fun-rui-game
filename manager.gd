@@ -2,12 +2,12 @@ extends Node2D
 
 const g=9.8
 
-@onready var rui = $"../bg/rui"
+@onready var rui = $"../rui"
 @onready var problemDisplay = $"../bg/board/problem"
 @onready var answer = $"../bg/board/answer"
 @onready var feedback = $"../bg/board/feedback"
-@onready var kasaHeadIncorrect = $"../bg/incorrectAnswers/kasaHead"
-@onready var kasaHeadCorrect = $"../bg/correctAnswers/kasaHead"
+@onready var miniHead = $"../bg/progressBar/miniHead"
+@onready var timer = $"../managerTimer"
 
 var ans=0
 var firstTimeWrong=true
@@ -24,9 +24,10 @@ var rng = RandomNumberGenerator.new();
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$"../Node2D/AnimationPlayer".play("idle")
+	$"../rui/AnimationPlayer".play("idle")
 	rng.randomize()
 	createProblem()
+	timer.timeout.connect(nextProblem)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -96,7 +97,7 @@ func createProblem():
 	
 	elif choice==2: #pendulum related questions
 		var type=rng.randi_range(1,6)
-		type=5
+		type=3
 		if type==1: #solve for length of pendulum
 			var numCycles=randi_range(5,30)
 			var numSeconds=randi_range(10,25)
@@ -141,30 +142,38 @@ func _on_answer_submit() -> void:
 			var userFloat = float(answer.text)
 			if userFloat>=ans-0.1 && userFloat<=ans+0.1:
 				feedback.text=""
-				correctAnswers+=1
-				kasaHeadCorrect.set_position(Vector2(($"../bg/correctAnswers".size.x*((correctAnswers*1.0)/totalCorrects)),kasaHeadCorrect.position.y))
+				if firstTimeWrong:
+					correctAnswers+=1
+					miniHead.set_position(Vector2(miniHead.position.x+($"../bg/progressBar".size.x*(1.0/(totalCorrects+totalIncorrects))),miniHead.position.y))
+					if (correctAnswers*1.0)/totalCorrects >= 0.5:
+						$"../bg/progressBar/miniHead".almostThere()
+					else:
+						$"../bg/progressBar/miniHead".neutral()
 				feedback.push_color(Color(0.0, 0.677, 0.0, 1.0))
 				feedback.add_text("Correct!")
 				$"../hooray".play()
 				confetti()
+				$"../tsukasaHead".correct()
 				buttonCooldown=true
-				var timer = Timer.new()
-				add_child(timer)
 				timer.wait_time=3
 				timer.one_shot=true
-				timer.timeout.connect(nextProblem)
 				timer.start()
 				
 			else:
 				if firstTimeWrong:
 					incorrectAnswers+=1
-					kasaHeadIncorrect.set_position(Vector2(($"../bg/incorrectAnswers".size.x*((incorrectAnswers*1.0)/totalIncorrects)),kasaHeadIncorrect.position.y))
+					miniHead.set_position(Vector2(miniHead.position.x-($"../bg/progressBar".size.x*(1.0/(totalCorrects+totalIncorrects))),miniHead.position.y))
 					#firstTimeWrong=false
+					if (incorrectAnswers*1.0)/totalIncorrects >= 0.5:
+						$"../bg/progressBar/miniHead".cannonImpending()
+					else:
+						$"../bg/progressBar/miniHead".neutral()
 				
 				if incorrectAnswers==totalIncorrects:
 					$"../bg".visible=false
 					$"../gameLose".visible=true
 				else:
+					$"../tsukasaHead".incorrect()
 					feedback.text=""
 					feedback.push_color(Color(1,0,0))
 					feedback.add_text("Try again...")
