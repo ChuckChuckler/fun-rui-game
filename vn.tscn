@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c2lt7s0wgdqup"]
+[gd_scene load_steps=17 format=3 uid="uid://c2lt7s0wgdqup"]
 
 [ext_resource type="Script" uid="uid://cggh10gakn7nt" path="res://openingManager.gd" id="1_u6t4w"]
 [ext_resource type="Script" uid="uid://dn4ug1a8dqc34" path="res://vnManager.gd" id="2_dhfb4"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://duy0s55ey5fr7" path="res://RuiVnSprites/ruiDefault.png" id="4_x5shp"]
 [ext_resource type="AudioStream" uid="uid://b62ckvalr7ho1" path="res://sfx/02. Bouncy.mp3" id="5_luay6"]
 [ext_resource type="AudioStream" uid="uid://cumc287nl4xx8" path="res://sfx/vine-boom.mp3" id="6_lag4i"]
+[ext_resource type="Texture2D" uid="uid://chyun0j2adosa" path="res://tucacaFail.png" id="6_omnfw"]
+[ext_resource type="Texture2D" uid="uid://diewegjc778pn" path="res://ruisCannon.png" id="7_6hhl1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u6t4w"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -81,21 +83,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_dhfb4")
 
-[node name="tsucacaFail" type="ColorRect" parent="vn"]
-layout_mode = 0
-offset_right = 1155.0
-offset_bottom = 647.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="vn/tsucacaFail"]
-layout_mode = 0
-offset_right = 1161.0
-offset_bottom = 639.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 20
-text = "draw this dummy failing his test clean 0/100"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="kamiyamaBg" type="TextureRect" parent="vn"]
 visible = false
 layout_mode = 0
@@ -119,20 +106,39 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("4_x5shp")
 expand_mode = 1
 
+[node name="tsucacaFail" type="ColorRect" parent="vn"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 1.0
+offset_right = 1157.0
+offset_bottom = 654.0
+color = Color(0.5369263, 0.6349665, 0.60867906, 1)
+
+[node name="tsucacaFail" type="TextureRect" parent="vn/tsucacaFail"]
+layout_mode = 0
+offset_left = 231.0
+offset_right = 987.0
+offset_bottom = 538.0
+texture = ExtResource("6_omnfw")
+expand_mode = 1
+stretch_mode = 4
+
 [node name="ruisCannon" type="ColorRect" parent="vn"]
 visible = false
 layout_mode = 0
 offset_right = 1146.0
 offset_bottom = 647.0
-color = Color(0.45452422, 0.45452428, 0.45452422, 1)
+color = Color(0.45906395, 0.4338058, 0.46021265, 1)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="vn/ruisCannon"]
+[node name="TextureRect" type="TextureRect" parent="vn/ruisCannon"]
 layout_mode = 0
-offset_top = 178.0
-offset_right = 1150.0
-offset_bottom = 265.0
-text = "image of rui shooting tsucaca out of canon"
-horizontal_alignment = 1
+offset_left = 120.0
+offset_top = -25.0
+offset_right = 1372.0
+offset_bottom = 570.0
+texture = ExtResource("7_6hhl1")
+expand_mode = 1
+stretch_mode = 4
 
 [node name="tsukaka" type="TextureRect" parent="vn"]
 layout_mode = 0
