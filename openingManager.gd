@@ -14,6 +14,7 @@ var texts = [
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$typewriterTimer.timeout.connect(stop_sound)
 	update_text()
 
 
@@ -32,8 +33,13 @@ func _on_next() -> void:
 		update_text()
 
 func update_text():
+	$AudioStreamPlayer.play()
+	$typewriterTimer.start()
 	text.text=texts[index]
 	text.visible_ratio=0.0
 	var tween:Tween = create_tween()
 	tween.tween_property(text, "visible_ratio", 1.0, 2.0).from(0.0)
 	
+
+func stop_sound():
+	$AudioStreamPlayer.stop()
