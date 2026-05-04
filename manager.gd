@@ -141,6 +141,7 @@ func _on_answer_submit() -> void:
 		if answer.text!="":
 			var userFloat = float(answer.text)
 			if userFloat>=ans-0.1 && userFloat<=ans+0.1:
+			#if false:
 				feedback.text=""
 				if firstTimeWrong:
 					correctAnswers+=1
@@ -154,6 +155,7 @@ func _on_answer_submit() -> void:
 						
 				feedback.push_color(Color(0.0, 0.677, 0.0, 1.0))
 				feedback.add_text("Correct!")
+				showCorrectReaction()
 				playCorrectSound()
 				confetti()
 				$"../tsukasaHead".correct()
@@ -208,7 +210,13 @@ func showIncorrectReaction():
 	]
 	
 	$"../wrongAnswerImgs".visible=true
-	currentIndex = randi_range(0,incorrectReactions.size()-1)
+	
+	var temp = randi_range(0,incorrectReactions.size()-1)
+	while temp==currentIndex:
+		temp=randi_range(0,incorrectReactions.size()-1)
+	
+	currentIndex = temp
+	
 	var tween = create_tween()
 	tween.tween_property(incorrectReactions[currentIndex], "modulate:a",1.0,0.5)
 	$"../wrongAnswerImgs/Timer".start()
@@ -237,6 +245,41 @@ func playCorrectSound():
 	$"../hooray".stream=correctSounds[randi_range(0,correctSounds.size()-1)];
 	$"../hooray".play()
 	
+var currentIndex1=0
+
+func showCorrectReaction():
+	var correctReactions = [
+		$"../correctAnswerImgs/bluemojiRui", 
+		$"../correctAnswerImgs/ruiShockedCat",
+		$"../correctAnswerImgs/kasaYippee",
+		$"../correctAnswerImgs/yaoiCheckmarks"
+	]
+	
+	$"../correctAnswerImgs".visible=true
+	
+	var temp = randi_range(0,correctReactions.size()-1)
+	print_debug("temp init- " + str(temp))
+	while temp==currentIndex1:
+		temp=randi_range(0,correctReactions.size()-1)
+	currentIndex1 = temp
+	var tween = create_tween()
+	tween.tween_property(correctReactions[currentIndex1], "modulate:a",1.0,0.5)
+	$"../correctAnswerImgs/Timer".start()
+	
+	
+func _correctreaction_fade() -> void:
+	var correctReactions = [
+		$"../correctAnswerImgs/bluemojiRui", 
+		$"../correctAnswerImgs/ruiShockedCat",
+		$"../correctAnswerImgs/kasaYippee",
+		$"../correctAnswerImgs/yaoiCheckmarks"
+	]
+
+	var tween = create_tween()
+	tween.tween_property(correctReactions[currentIndex1], "modulate:a",0.0,0.5)
+	await tween.finished
+	$"../correctAnswerImgs".visible=false
+
 func confetti():
 	var confettiTextures = [
 		load("res://confetti/red.png"),

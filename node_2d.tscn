@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bxo5gqgrynf0i"]
+[gd_scene load_steps=43 format=3 uid="uid://bxo5gqgrynf0i"]
 
 [ext_resource type="Texture2D" uid="uid://c58e5h0iqcnuv" path="res://tsukasaInCannon.png" id="1_0h7mo"]
 [ext_resource type="Texture2D" uid="uid://pmbey66fppbi" path="res://tsukasa mini head/neutral.png" id="1_ir8iy"]
@@ -16,6 +16,10 @@
 [ext_resource type="Texture2D" uid="uid://ckkj11q78n7vg" path="res://incorrectImgs/ruilaugh.png" id="14_flf07"]
 [ext_resource type="Texture2D" uid="uid://dhpcgcc0qahfc" path="res://incorrectImgs/trashStatementKasa.png" id="15_k73cj"]
 [ext_resource type="Texture2D" uid="uid://badotpcxfn67v" path="res://incorrectImgs/sakaruiYAY.png" id="16_rjqkl"]
+[ext_resource type="Texture2D" uid="uid://bm80jun01ncw5" path="res://correctImgs/ruibluenoway.png" id="17_fs4d3"]
+[ext_resource type="Texture2D" uid="uid://bar7alpld63x1" path="res://correctImgs/shockedcatrui.png" id="18_7vxoj"]
+[ext_resource type="Texture2D" uid="uid://4kulxjwjssm1" path="res://correctImgs/yippeekasa.png" id="19_ei405"]
+[ext_resource type="Texture2D" uid="uid://dxenp5tysi5ah" path="res://correctImgs/alphakasa.png" id="20_e8dv2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x0ka3"]
 bg_color = Color(0.9565986, 0.93960077, 0.8778195, 1)
@@ -1971,6 +1975,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="managerTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
 
 [node name="tsukasaTimer" type="Timer" parent="."]
 
@@ -2036,5 +2042,53 @@ stretch_mode = 4
 wait_time = 2.0
 one_shot = true
 
+[node name="correctAnswerImgs" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Timer" type="Timer" parent="correctAnswerImgs"]
+wait_time = 2.0
+one_shot = true
+
+[node name="bluemojiRui" type="TextureRect" parent="correctAnswerImgs"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 1153.0
+offset_bottom = 645.0
+texture = ExtResource("17_fs4d3")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ruiShockedCat" type="TextureRect" parent="correctAnswerImgs"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 1148.0
+offset_bottom = 651.0
+texture = ExtResource("18_7vxoj")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="kasaYippee" type="TextureRect" parent="correctAnswerImgs"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 1154.0
+offset_bottom = 648.0
+texture = ExtResource("19_ei405")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="yaoiCheckmarks" type="TextureRect" parent="correctAnswerImgs"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 1160.0
+offset_bottom = 651.0
+texture = ExtResource("20_e8dv2")
+expand_mode = 1
+stretch_mode = 5
+
 [connection signal="pressed" from="bg/board/submit" to="manager" method="_on_answer_submit"]
 [connection signal="timeout" from="wrongAnswerImgs/Timer" to="manager" method="_fadeout_incorrect"]
+[connection signal="timeout" from="correctAnswerImgs/Timer" to="manager" method="_correctreaction_fade"]
