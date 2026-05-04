@@ -20,4 +20,3 @@ func almostThere():
 func neutral():
 	$".".texture=load("res://tsukasa mini head/neutral.png")
 	$AnimationPlayer.play("idle")
-	

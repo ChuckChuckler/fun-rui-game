@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bxo5gqgrynf0i"]
+[gd_scene load_steps=39 format=3 uid="uid://bxo5gqgrynf0i"]
 
 [ext_resource type="Texture2D" uid="uid://c58e5h0iqcnuv" path="res://tsukasaInCannon.png" id="1_0h7mo"]
 [ext_resource type="Texture2D" uid="uid://pmbey66fppbi" path="res://tsukasa mini head/neutral.png" id="1_ir8iy"]
@@ -7,12 +7,15 @@
 [ext_resource type="Script" uid="uid://b0g1l7a5kktgg" path="res://minihead.gd" id="2_hqns4"]
 [ext_resource type="Texture2D" uid="uid://dlr2l0hj23k12" path="res://mwah.png" id="2_nr8wp"]
 [ext_resource type="AudioStream" uid="uid://b4yi8r1w7rlnl" path="res://sfx/spongebob-fail.mp3" id="3_0hol4"]
-[ext_resource type="AudioStream" uid="uid://b5x3knsvcd5bm" path="res://sfx/crowd-disappointed_8DRsYem.mp3" id="4_0hol4"]
 [ext_resource type="Texture2D" uid="uid://crsvwr0yk6eho" path="res://Rui_spritesheet.png" id="5_kdubu"]
 [ext_resource type="Texture2D" uid="uid://dkre6x2faylx" path="res://twinker bell.png" id="6_d21ai"]
 [ext_resource type="Texture2D" uid="uid://betjrikg8fvje" path="res://Spritesheet again.png" id="6_rj586"]
 [ext_resource type="Texture2D" uid="uid://cfuthrngnca70" path="res://tsukasas head/tsukasaNeutral.png" id="8_rj586"]
 [ext_resource type="Script" uid="uid://drtxi3km06o2f" path="res://tsukasa.gd" id="9_4d7sh"]
+[ext_resource type="Texture2D" uid="uid://b773h0wv0gjgg" path="res://incorrectImgs/spunchRui.png" id="13_ta5nu"]
+[ext_resource type="Texture2D" uid="uid://ckkj11q78n7vg" path="res://incorrectImgs/ruilaugh.png" id="14_flf07"]
+[ext_resource type="Texture2D" uid="uid://dhpcgcc0qahfc" path="res://incorrectImgs/trashStatementKasa.png" id="15_k73cj"]
+[ext_resource type="Texture2D" uid="uid://badotpcxfn67v" path="res://incorrectImgs/sakaruiYAY.png" id="16_rjqkl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x0ka3"]
 bg_color = Color(0.9565986, 0.93960077, 0.8778195, 1)
@@ -1588,25 +1591,9 @@ script = ExtResource("1_wtcfe")
 [node name="hooray" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_0e48y")
 
-[node name="bungebob" type="AudioStreamPlayer" parent="."]
+[node name="incorrectSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_0hol4")
-
-[node name="awww" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_0hol4")
-
-[node name="gameLose" type="ColorRect" parent="."]
-visible = false
-offset_right = 1157.0
-offset_bottom = 646.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="gameLose"]
-layout_mode = 0
-offset_right = 1114.0
-offset_bottom = 612.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-text = "Insert Tsukasa getting shot of out cannon"
-horizontal_alignment = 1
-vertical_alignment = 1
+volume_db = -9.0
 
 [node name="gameWin" type="ColorRect" parent="."]
 visible = false
@@ -1967,8 +1954,87 @@ libraries = {
 &"": SubResource("AnimationLibrary_hqns4")
 }
 
+[node name="gameLose" type="ColorRect" parent="."]
+visible = false
+offset_right = 1157.0
+offset_bottom = 646.0
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="gameLose"]
+layout_mode = 0
+offset_right = 1114.0
+offset_bottom = 612.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 40
+text = "Oh nooo you got shot out of a cannon"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="managerTimer" type="Timer" parent="."]
 
 [node name="tsukasaTimer" type="Timer" parent="."]
 
+[node name="wrongAnswerImgs" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = -3.0
+offset_top = 1.0
+offset_right = 37.0
+offset_bottom = 41.0
+
+[node name="sadSpunch" type="ColorRect" parent="wrongAnswerImgs"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 174.0
+offset_right = 967.0
+offset_bottom = 646.0
+
+[node name="TextureRect" type="TextureRect" parent="wrongAnswerImgs/sadSpunch"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 4.0
+offset_right = 821.0
+offset_bottom = 652.0
+texture = ExtResource("13_ta5nu")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="laughing" type="TextureRect" parent="wrongAnswerImgs"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 230.0
+offset_right = 1400.0
+offset_bottom = 646.0
+texture = ExtResource("14_flf07")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="kasaStatement" type="TextureRect" parent="wrongAnswerImgs"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 217.0
+offset_top = 3.0
+offset_right = 1289.0
+offset_bottom = 645.0
+texture = ExtResource("15_k73cj")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="sakaruiHaha" type="TextureRect" parent="wrongAnswerImgs"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 239.0
+offset_top = 4.0
+offset_right = 914.0
+offset_bottom = 644.0
+texture = ExtResource("16_rjqkl")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Timer" type="Timer" parent="wrongAnswerImgs"]
+wait_time = 2.0
+one_shot = true
+
 [connection signal="pressed" from="bg/board/submit" to="manager" method="_on_answer_submit"]
+[connection signal="timeout" from="wrongAnswerImgs/Timer" to="manager" method="_fadeout_incorrect"]

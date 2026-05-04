@@ -37,7 +37,7 @@ func _process(delta: float) -> void:
 
 func createProblem():
 	var choice = rng.randi_range(1,2)
-	choice=2
+	#choice=2
 	if choice==1: #spring related questions
 		var type=rng.randi_range(1,6)
 		#var type=7
@@ -97,7 +97,7 @@ func createProblem():
 	
 	elif choice==2: #pendulum related questions
 		var type=rng.randi_range(1,6)
-		type=3
+		#type=3
 		if type==1: #solve for length of pendulum
 			var numCycles=randi_range(5,30)
 			var numSeconds=randi_range(10,25)
@@ -154,12 +154,10 @@ func _on_answer_submit() -> void:
 						
 				feedback.push_color(Color(0.0, 0.677, 0.0, 1.0))
 				feedback.add_text("Correct!")
-				$"../hooray".play()
+				playCorrectSound()
 				confetti()
 				$"../tsukasaHead".correct()
 				buttonCooldown=true
-				timer.wait_time=3
-				timer.one_shot=true
 				timer.start()
 				
 			else:
@@ -180,12 +178,65 @@ func _on_answer_submit() -> void:
 					$"../gameLose".visible=true
 				else:
 					$"../tsukasaHead".incorrect()
+					playIncorrectSound()
+					showIncorrectReaction()
 					feedback.text=""
 					feedback.push_color(Color(1,0,0))
 					feedback.add_text("Try again...")
-					$"../bungebob".play()
-					$"../awww".play()
+					
 
+func playIncorrectSound():
+	var incorrectSounds = [
+		load("res://sfx/funny-frog-laugh(1).mp3"),
+		load("res://sfx/crowd-disappointed_8DRsYem.mp3"),
+		load("res://sfx/crowd-disappointed_8DRsYem.mp3"),
+		load("res://sfx/fahh-but-louder.mp3"),
+		load("res://sfx/wrong-answer-sound-effect.mp3"),
+		load("res://sfx/wrong-answer-sound-effect.mp3")
+	]
+	$"../incorrectSound".stream=incorrectSounds[randi_range(0,incorrectSounds.size()-1)];
+	$"../incorrectSound".play();
+	
+var currentIndex=0
+
+func showIncorrectReaction():
+	var incorrectReactions = [
+		$"../wrongAnswerImgs/sadSpunch",
+		$"../wrongAnswerImgs/laughing",
+		$"../wrongAnswerImgs/kasaStatement",
+		$"../wrongAnswerImgs/sakaruiHaha"
+	]
+	
+	$"../wrongAnswerImgs".visible=true
+	currentIndex = randi_range(0,incorrectReactions.size()-1)
+	var tween = create_tween()
+	tween.tween_property(incorrectReactions[currentIndex], "modulate:a",1.0,0.5)
+	$"../wrongAnswerImgs/Timer".start()
+	
+	
+func _fadeout_incorrect() -> void:
+	var incorrectReactions = [
+		$"../wrongAnswerImgs/sadSpunch",
+		$"../wrongAnswerImgs/laughing",
+		$"../wrongAnswerImgs/kasaStatement",
+		$"../wrongAnswerImgs/sakaruiHaha"
+	]
+	
+	var tween = create_tween()
+	tween.tween_property(incorrectReactions[currentIndex], "modulate:a",0.0,0.5)
+	await tween.finished
+	$"../wrongAnswerImgs".visible=false
+	
+func playCorrectSound():
+	var correctSounds = [
+		load("res://sfx/correct.mp3"),
+		load("res://sfx/ding-sound-effect_2 (1).mp3"),
+		load("res://sfx/fnaf-hooray.mp3"),
+	]
+	
+	$"../hooray".stream=correctSounds[randi_range(0,correctSounds.size()-1)];
+	$"../hooray".play()
+	
 func confetti():
 	var confettiTextures = [
 		load("res://confetti/red.png"),
