@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://bxo5gqgrynf0i"]
+[gd_scene load_steps=51 format=3 uid="uid://bxo5gqgrynf0i"]
 
 [ext_resource type="Texture2D" uid="uid://c58e5h0iqcnuv" path="res://tsukasaInCannon.png" id="1_0h7mo"]
 [ext_resource type="Texture2D" uid="uid://pmbey66fppbi" path="res://tsukasa mini head/neutral.png" id="1_ir8iy"]
@@ -20,6 +20,10 @@
 [ext_resource type="Texture2D" uid="uid://bar7alpld63x1" path="res://correctImgs/shockedcatrui.png" id="18_7vxoj"]
 [ext_resource type="Texture2D" uid="uid://4kulxjwjssm1" path="res://correctImgs/yippeekasa.png" id="19_ei405"]
 [ext_resource type="Texture2D" uid="uid://dxenp5tysi5ah" path="res://correctImgs/alphakasa.png" id="20_e8dv2"]
+[ext_resource type="Texture2D" uid="uid://b71plxrvtrtsp" path="res://ruisohappycannon.png" id="21_e8dv2"]
+[ext_resource type="Texture2D" uid="uid://dch1tpabr1rsw" path="res://tsukasapleasedontbeawebpfile.webp" id="22_2nhjh"]
+[ext_resource type="Texture2D" uid="uid://ut1kprg0jpm" path="res://cannontoshoottsukasa.png" id="23_bjha6"]
+[ext_resource type="AudioStream" uid="uid://yvko1qgow4yd" path="res://sfx/sad-meow-song.mp3" id="24_2nhjh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x0ka3"]
 bg_color = Color(0.9565986, 0.93960077, 0.8778195, 1)
@@ -1462,6 +1466,118 @@ _data = {
 &"incorrect": SubResource("Animation_x0ka3")
 }
 
+[sub_resource type="Animation" id="Animation_gt76g"]
+resource_name = "shoot"
+length = 6.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.01, 1.11, 1.21, 1.31, 1.41, 1.51, 1.61, 1.71, 1.81, 1.91, 2, 2.5333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(438, 251), Vector2(441, 253), Vector2(435.00003, 250.99997), Vector2(438.99997, 254), Vector2(437.00003, 252.00002), Vector2(439, 254), Vector2(439, 250.00003), Vector2(440.99997, 252.00002), Vector2(440.00003, 250.00002), Vector2(443, 253.00003), Vector2(438, 251), Vector2(441, 253), Vector2(435.00003, 250.99997), Vector2(438.99997, 254), Vector2(437.00003, 252.00002), Vector2(439, 254), Vector2(439, 250.00003), Vector2(440.99997, 252.00002), Vector2(440.00003, 250.00002), Vector2(443, 253.00003), Vector2(438, 251), Vector2(1355, -235.99991)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../RichTextLabel:theme_override_colors/default_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3.0333333, 5.0333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../tryagain:theme_override_colors/font_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(5.5333333, 6.5333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../tryagain:theme_override_styles/normal:bg_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(5.5333333, 6.5333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.13725491, 0.13725491, 0.13725491, 0), Color(0.13725491, 0.13725491, 0.13725491, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1fr6y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(438, 251)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../RichTextLabel:theme_override_colors/default_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../tryagain:theme_override_colors/font_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../tryagain:theme_override_styles/normal:bg_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.13725491, 0.13725491, 0.13725491, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2hxjc"]
+_data = {
+&"RESET": SubResource("Animation_1fr6y"),
+&"shoot": SubResource("Animation_gt76g")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ebxd8"]
+bg_color = Color(0.13725491, 0.13725491, 0.13725491, 0)
+
 [node name="physics problems" type="Node2D"]
 
 [node name="bg" type="ColorRect" parent="."]
@@ -1958,22 +2074,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_hqns4")
 }
 
-[node name="gameLose" type="ColorRect" parent="."]
-visible = false
-offset_right = 1157.0
-offset_bottom = 646.0
-color = Color(0, 0, 0, 1)
-
-[node name="RichTextLabel" type="RichTextLabel" parent="gameLose"]
-layout_mode = 0
-offset_right = 1114.0
-offset_bottom = 612.0
-theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/normal_font_size = 40
-text = "Oh nooo you got shot out of a cannon"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="managerTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
@@ -2089,6 +2189,86 @@ texture = ExtResource("20_e8dv2")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="gameLose" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="bg" type="ColorRect" parent="gameLose"]
+layout_mode = 0
+offset_left = -5.0
+offset_top = -36.0
+offset_right = 1322.0
+offset_bottom = 691.0
+color = Color(0, 0, 0, 1)
+
+[node name="Ruisohappycannon" type="Sprite2D" parent="gameLose"]
+position = Vector2(235, 485)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("21_e8dv2")
+
+[node name="loserwhinybaby" type="TextureRect" parent="gameLose"]
+layout_mode = 0
+offset_left = 438.0
+offset_top = 251.0
+offset_right = 635.58826
+offset_bottom = 396.06293
+rotation = 0.9007366
+texture = ExtResource("22_2nhjh")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gameLose/loserwhinybaby"]
+libraries = {
+&"": SubResource("AnimationLibrary_2hxjc")
+}
+
+[node name="ColorRect" type="ColorRect" parent="gameLose"]
+layout_mode = 0
+offset_left = 314.00003
+offset_top = 366.00003
+offset_right = 406.00003
+offset_bottom = 523.0
+rotation = -0.5992935
+color = Color(0, 0, 0, 1)
+
+[node name="cannon" type="TextureRect" parent="gameLose"]
+layout_mode = 0
+offset_left = 156.99998
+offset_top = 410.0
+offset_right = 474.0
+offset_bottom = 644.0
+rotation = -0.3227156
+texture = ExtResource("23_bjha6")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="gameLose"]
+layout_mode = 0
+offset_left = 502.0
+offset_top = 231.0
+offset_right = 1162.0
+offset_bottom = 282.0
+theme_override_colors/default_color = Color(1, 1, 1, 0)
+theme_override_font_sizes/normal_font_size = 30
+text = "you got shot.out of a cannon...."
+
+[node name="tryagain" type="Button" parent="gameLose"]
+layout_mode = 0
+offset_left = 625.0
+offset_top = 306.0
+offset_right = 779.0
+offset_bottom = 374.0
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxFlat_ebxd8")
+text = "try again"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="gameLose"]
+stream = ExtResource("24_2nhjh")
+
 [connection signal="pressed" from="bg/board/submit" to="manager" method="_on_answer_submit"]
 [connection signal="timeout" from="wrongAnswerImgs/Timer" to="manager" method="_fadeout_incorrect"]
 [connection signal="timeout" from="correctAnswerImgs/Timer" to="manager" method="_correctreaction_fade"]
+[connection signal="pressed" from="gameLose/tryagain" to="manager" method="_on_tryagain_pressed"]

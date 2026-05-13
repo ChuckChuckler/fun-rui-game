@@ -141,7 +141,6 @@ func _on_answer_submit() -> void:
 		if answer.text!="":
 			var userFloat = float(answer.text)
 			if userFloat>=ans-0.1 && userFloat<=ans+0.1:
-			#if false:
 				feedback.text=""
 				if firstTimeWrong:
 					correctAnswers+=1
@@ -178,6 +177,8 @@ func _on_answer_submit() -> void:
 				if incorrectAnswers==totalIncorrects:
 					$"../bg".visible=false
 					$"../gameLose".visible=true
+					$"../gameLose/loserwhinybaby/AnimationPlayer".play("shoot")
+					$"../gameLose/AudioStreamPlayer".play()
 				else:
 					$"../tsukasaHead".incorrect()
 					playIncorrectSound()
@@ -317,3 +318,7 @@ func makeRuiNormal():
 	var textureReplace = [$"../rui/underEyeL", $"../rui/pupilL", $"../rui/underEyeR", $"../rui/pupilR", $"../rui/mouf", $"../rui/eyelashL", $"../rui/eyelashR", $"../rui/eyebrowL", $"../rui/eyebrowR"]
 	for i in range(textureReplace.size()):
 		textureReplace[i].texture=load("res://Spritesheet again.png")
+
+
+func _on_tryagain_pressed() -> void:
+	get_tree().reload_current_scene()
