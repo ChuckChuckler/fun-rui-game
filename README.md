@@ -1,5 +1,6 @@
 Who said studying can't be fun??? I love making games to help me study, so here's my game to study pendulums and springs:
 # MY REALLY FUN PHYSICS STUDYING GAME FT. RUI
+![physicsGameIcon](https://img.itch.zone/aW1nLzI3MjYyNTA3LnBuZw==/315x250%23c/dpwdGd.png)
 
 Tsukasa fails his test. Rui agrees to help him study!! Will you get all the questions right and be the absolute alpha gigachad of physics? Or will you get too many wrong and be forced to try out Rui's new human cannon...?
 
