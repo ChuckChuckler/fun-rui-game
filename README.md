@@ -32,6 +32,8 @@ Pendulums:
 - Solving for the number of cycles within a certain number of seconds
 
 Notes:
+
 a. These are very basic problems
+
 b. The values used in the calculations are determined through rng, so they may not be entirely possible in reality
 
