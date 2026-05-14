@@ -141,6 +141,7 @@ func _on_answer_submit() -> void:
 		if answer.text!="":
 			var userFloat = float(answer.text)
 			if userFloat>=ans-0.1 && userFloat<=ans+0.1:
+			#if true:
 				feedback.text=""
 				if firstTimeWrong:
 					correctAnswers+=1
@@ -303,6 +304,7 @@ func nextProblem():
 	if correctAnswers==totalCorrects:
 		$"../bg".visible=false
 		$"../gameWin".visible=true
+		$"../gameWin/AnimationPlayer".play("fadein")
 	else:
 		createProblem()
 		feedback.text=""

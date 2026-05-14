@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://bxo5gqgrynf0i"]
+[gd_scene load_steps=55 format=3 uid="uid://bxo5gqgrynf0i"]
 
 [ext_resource type="Texture2D" uid="uid://c58e5h0iqcnuv" path="res://tsukasaInCannon.png" id="1_0h7mo"]
 [ext_resource type="Texture2D" uid="uid://pmbey66fppbi" path="res://tsukasa mini head/neutral.png" id="1_ir8iy"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://dch1tpabr1rsw" path="res://tsukasapleasedontbeawebpfile.webp" id="22_2nhjh"]
 [ext_resource type="Texture2D" uid="uid://ut1kprg0jpm" path="res://cannontoshoottsukasa.png" id="23_bjha6"]
 [ext_resource type="AudioStream" uid="uid://yvko1qgow4yd" path="res://sfx/sad-meow-song.mp3" id="24_2nhjh"]
+[ext_resource type="Texture2D" uid="uid://kr430uot8ci0" path="res://alphakasawinscreen.png" id="25_bjha6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x0ka3"]
 bg_color = Color(0.9565986, 0.93960077, 0.8778195, 1)
@@ -1466,6 +1467,57 @@ _data = {
 &"incorrect": SubResource("Animation_x0ka3")
 }
 
+[sub_resource type="Animation" id="Animation_1fr6y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(438, 251)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../RichTextLabel:theme_override_colors/default_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../tryagain:theme_override_colors/font_color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../tryagain:theme_override_styles/normal:bg_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.13725491, 0.13725491, 0.13725491, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_gt76g"]
 resource_name = "shoot"
 length = 6.6
@@ -1518,57 +1570,6 @@ tracks/3/keys = {
 "values": [Color(0.13725491, 0.13725491, 0.13725491, 0), Color(0.13725491, 0.13725491, 0.13725491, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_1fr6y"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(438, 251)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../RichTextLabel:theme_override_colors/default_color")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../tryagain:theme_override_colors/font_color")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../tryagain:theme_override_styles/normal:bg_color")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.13725491, 0.13725491, 0.13725491, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2hxjc"]
 _data = {
 &"RESET": SubResource("Animation_1fr6y"),
@@ -1577,6 +1578,67 @@ _data = {
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ebxd8"]
 bg_color = Color(0.13725491, 0.13725491, 0.13725491, 0)
+
+[sub_resource type="Animation" id="Animation_bjha6"]
+resource_name = "fadein"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel:theme_override_colors/default_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RichTextLabel2:theme_override_colors/default_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2hxjc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel:theme_override_colors/default_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RichTextLabel2:theme_override_colors/default_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ebxd8"]
+_data = {
+&"RESET": SubResource("Animation_2hxjc"),
+&"fadein": SubResource("Animation_bjha6")
+}
 
 [node name="physics problems" type="Node2D"]
 
@@ -1714,20 +1776,6 @@ stream = ExtResource("2_0e48y")
 [node name="incorrectSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_0hol4")
 volume_db = -9.0
-
-[node name="gameWin" type="ColorRect" parent="."]
-visible = false
-offset_right = 1154.0
-offset_bottom = 651.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="gameWin"]
-layout_mode = 0
-offset_right = 1153.0
-offset_bottom = 642.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-text = "wow you won yayyyyyyyyyy"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="rui" type="Node2D" parent="."]
 position = Vector2(28, -278)
@@ -2267,6 +2315,55 @@ text = "try again"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="gameLose"]
 stream = ExtResource("24_2nhjh")
+
+[node name="gameWin" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="bg" type="ColorRect" parent="gameWin"]
+layout_mode = 0
+offset_left = -37.0
+offset_top = -31.0
+offset_right = 1193.0
+offset_bottom = 697.0
+
+[node name="alphaksa" type="TextureRect" parent="gameWin"]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 104.0
+offset_right = 1011.0
+offset_bottom = 653.0
+texture = ExtResource("25_bjha6")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="gameWin"]
+layout_mode = 0
+offset_left = 380.0
+offset_top = 59.0
+offset_right = 715.0
+offset_bottom = 153.0
+theme_override_colors/default_color = Color(0, 0, 0, 0)
+theme_override_font_sizes/normal_font_size = 25
+text = "wow..."
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="gameWin"]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 58.0
+offset_right = 1428.0
+offset_bottom = 98.0
+theme_override_colors/default_color = Color(0, 0, 0, 0)
+theme_override_font_sizes/normal_font_size = 25
+text = "you are the physics master..."
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gameWin"]
+libraries = {
+&"": SubResource("AnimationLibrary_ebxd8")
+}
 
 [connection signal="pressed" from="bg/board/submit" to="manager" method="_on_answer_submit"]
 [connection signal="timeout" from="wrongAnswerImgs/Timer" to="manager" method="_fadeout_incorrect"]

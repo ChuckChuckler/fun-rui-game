@@ -43,3 +43,17 @@ func update_text():
 
 func stop_sound():
 	$AudioStreamPlayer.stop()
+
+
+func _on_skip_vn_pressed() -> void:
+	$"../black".visible=true
+	var timer = Timer.new()
+	add_child(timer)
+	timer.wait_time=2
+	timer.one_shot=true
+	timer.timeout.connect(next_scene)
+	timer.start()
+	create_tween().tween_property($"../black", "color", Color(0,0,0,1),2)
+
+func next_scene():
+	get_tree().change_scene_to_file("res://node_2d.tscn")

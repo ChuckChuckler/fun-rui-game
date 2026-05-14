@@ -43,6 +43,7 @@ script = ExtResource("1_u6t4w")
 
 [node name="bg" type="ColorRect" parent="opening"]
 layout_mode = 0
+offset_left = -79.0
 offset_right = 1148.0
 offset_bottom = 647.0
 color = Color(0.056291588, 0.056291603, 0.056291595, 1)
@@ -72,7 +73,7 @@ text = "next >>"
 stream = ExtResource("2_vh7ko")
 
 [node name="typewriterTimer" type="Timer" parent="opening"]
-wait_time = 2.5
+wait_time = 2.0
 one_shot = true
 
 [node name="vn" type="Control" parent="."]
@@ -195,13 +196,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_rh2ag")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_3thg1")
 theme_override_styles/hover = SubResource("StyleBoxFlat_luay6")
 
-[node name="black" type="ColorRect" parent="vn"]
-visible = false
-layout_mode = 0
-offset_right = 1158.0
-offset_bottom = 650.0
-color = Color(0, 0, 0, 0)
-
 [node name="gong" type="AudioStreamPlayer" parent="vn"]
 stream = ExtResource("4_3thg1")
 
@@ -211,5 +205,19 @@ stream = ExtResource("5_luay6")
 [node name="boom" type="AudioStreamPlayer" parent="vn"]
 stream = ExtResource("6_lag4i")
 
+[node name="skipVn" type="Button" parent="."]
+offset_left = 9.0
+offset_top = 10.0
+offset_right = 143.0
+offset_bottom = 53.0
+text = "i dont care just let me study"
+
+[node name="black" type="ColorRect" parent="."]
+visible = false
+offset_right = 1158.0
+offset_bottom = 650.0
+color = Color(0, 0, 0, 0)
+
 [connection signal="pressed" from="opening/Button" to="opening" method="_on_next"]
 [connection signal="pressed" from="vn/next" to="vn" method="_next_dialogue"]
+[connection signal="pressed" from="skipVn" to="opening" method="_on_skip_vn_pressed"]

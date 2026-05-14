@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="fun physics game ft rui"
-run/main_scene="uid://bxo5gqgrynf0i"
+run/main_scene="uid://c2lt7s0wgdqup"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="res://icon.svg"
 
