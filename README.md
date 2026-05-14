@@ -15,23 +15,23 @@ Keep track of the meter at the bottom of the screen. If Tsukasa's head gets too 
 
 ## Topics Covered
 Springs:
-    - Finding the mass of a weight attached to a spring
-    - Finding the spring constant of a spring
-    - Finding the stretch length/displacement of a spring
-    - Solving for potential energy
-    - Solving for force exerted
-    - Solving for the height of an object propelled by a spring
-    - Solving for the velocity of an object propelled by a spring
+- Finding the mass of a weight attached to a spring
+- Finding the spring constant of a spring
+- Finding the stretch length/displacement of a spring
+- Solving for potential energy
+- Solving for force exerted
+- Solving for the height of an object propelled by a spring
+- Solving for the velocity of an object propelled by a spring
 
 Pendulums:
-    - Finding the length of a pendulum
-    - Findng the g of another planet
-    - Calculating period
-    - Calculating frequency
-    - Solving for the number of seconds in which a certain number of cycles is made
-    - Solving for the number of cycles within a certain number of seconds
+- Finding the length of a pendulum
+- Findng the g of another planet
+- Calculating period
+- Calculating frequency
+- Solving for the number of seconds in which a certain number of cycles is made
+- Solving for the number of cycles within a certain number of seconds
 
 Notes:
-    a. These are very basic problems
-    b. The values used in the calculations are determined through rng, so they may not be entirely possible in reality
+a. These are very basic problems
+b. The values used in the calculations are determined through rng, so they may not be entirely possible in reality
 
